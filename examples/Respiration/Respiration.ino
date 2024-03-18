@@ -19,7 +19,7 @@ the Free Software Foundation.
 #include <Respiration.h>
 
 // Create instance for sensor on analog input pin.
-Respiration resp(A0);
+Respiration resp(A3);
 
 // Optional variables for lighting onboard LED on heartbeat
 int counter;  // counter for timing routine without using delay
@@ -57,7 +57,7 @@ void loop() {
   
     //Serial.print(resp.getRaw());  
     //Serial.print("\t");                  // tab separated values
-    Serial.print(resp.getNormalized()); // ADC values are normalized and mapped as float from 0.0 to 1.0
+    Serial.print(resp.getRaw()); // ADC values are normalized and mapped as float from 0.0 to 1.0
                                        // Note that if signal amplitude changes drastically the breath detection may
                                        // pause while the normalization process recalibrates
                                        

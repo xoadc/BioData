@@ -21,7 +21,7 @@ the Free Software Foundation.
 SkinConductance sc(A7);
 
 //variable for attenuating data flow to serial port prevents crashes
-const long printInterval = 2;       // millis
+const long printInterval = 20;       // millis
 
 void setup() {
   Serial.begin(9600);  // works best in testing with 9600 or lower

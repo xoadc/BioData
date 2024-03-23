@@ -29,8 +29,6 @@ td {
 
 <body>
 <h1>Bill of Materials: Biosynth-0423.fzz</h1>
-<p class="meta">/home/theverant/Documents/GitHub/BioData/schematics/Biosynth-0423.fzz</p>
-<p class="meta">Saturday, March 23 2024, 19:11:21</p>
 
 <h2>Assembly List</h2>
 <table>

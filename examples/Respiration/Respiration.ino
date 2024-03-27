@@ -57,19 +57,19 @@ void loop() {
   
     //Serial.print(resp.getRaw());  
     //Serial.print("\t");                  // tab separated values
-    Serial.print(resp.getRaw()); // ADC values are normalized and mapped as float from 0.0 to 1.0
+    Serial.println(resp.getRaw()); // ADC values are normalized and mapped as float from 0.0 to 1.0
                                        // Note that if signal amplitude changes drastically the breath detection may
                                        // pause while the normalization process recalibrates
                                        
-    Serial.print("\t");                  // tab separated values
+    // Serial.print("\t");                  // tab separated values
   
-    Serial.print(resp.getBPM());  
-    Serial.print("\t");
+    // Serial.print(resp.getBPM());  
+    // Serial.print("\t");
   
-    Serial.print(resp.bpmChange());     // maps changes in bpm and outputs as float from 0.0 to 1.0 
-                                      // 0.5 is avg, < 0.5 as below average, > 0.5 above average.
-    Serial.print("\t");
-    Serial.println(resp.amplitudeChange()); // maps changes in signal amplitude and outputs as float from 0.0 to 1.0 
+    // Serial.print(resp.bpmChange());     // maps changes in bpm and outputs as float from 0.0 to 1.0 
+    //                                   // 0.5 is avg, < 0.5 as below average, > 0.5 above average.
+    // Serial.print("\t");
+    // Serial.println(resp.amplitudeChange()); // maps changes in signal amplitude and outputs as float from 0.0 to 1.0 
                                         // 0.5 is avg, < 0.5 as below average, > 0.5 above average.
   }   
                                  

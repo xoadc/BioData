@@ -21,6 +21,12 @@ the Free Software Foundation.
 // Create instance for sensor on analog input pin.
 Respiration resp(A3);
 
+char* ip = "127.0.0.1";
+int port = 5000;
+
+EthernetClient ethClient;
+OSCMessage msg ("/respiration");
+
 // Optional variables for lighting onboard LED on heartbeat
 int counter;  // counter for timing routine without using delay
 int LED = 13; // onboard LED

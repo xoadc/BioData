@@ -16,15 +16,19 @@ the Free Software Foundation.
 
 ******************************************************/
 #include <SkinConductance.h>
+// #include <OSCMessage.h>
+// #include <Ethernet.h>
 
 // Create instance for sensor on analog input pin.
-SkinConductance sc(A7);
+SkinConductance sc(A0);
+
+//OSCMessage msg ("/skin");
 
 //variable for attenuating data flow to serial port prevents crashes
-const long printInterval = 20;       // millis
+const long printInterval = 50;       // millis
 
 void setup() {
-  Serial.begin(9600);  // works best in testing with 9600 or lower
+  Serial.begin(19200);  // works best in testing with 9600 or lower
 
   // Initialize sensor.
   sc.reset();
@@ -36,13 +40,13 @@ void loop() {
   // Update sensor.
   sc.update();
   unsigned long currentMillis = millis();    // update time
-  if (currentMillis%printInterval == 0) {  //to avoid crashing serial port
+  if (currentMillis % printInterval == 0) {  //to avoid crashing serial port
     // Print-out values.
-    Serial.print(sc.getSCR()); // this number changes only when a large enough spike in skin conductivity occurs.
-    Serial.print(" ");
-    Serial.print(sc.getSCL()); // the averaged level of skin conductivity as measured by the ADC
-    Serial.print(" ");
-    Serial.print(sc.getRaw()); // raw ADC value.
+    // Serial.print(sc.getSCR()); // this number changes only when a large enough spike in skin conductivity occurs.
+    // Serial.print(" ");
+    // Serial.print(sc.getSCL()); // the averaged level of skin conductivity as measured by the ADC
+    // Serial.print(" ");
+    Serial.print (sc.getRaw()); // raw ADC value.
     Serial.println();
   }
 }

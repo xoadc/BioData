@@ -36,9 +36,9 @@ def openbci_band_handler (address, *args):
             time_of_last_blink = current_time
             OSC_CLIENT.send_message ("/blink", 1)
             print ('blink detected')
+            return
 
-        else:
-            OSC_CLIENT.send_message ("/blink", 0)
+        OSC_CLIENT.send_message ("/blink", 0)
 
 
 OSC_DISPATCHER = Dispatcher()

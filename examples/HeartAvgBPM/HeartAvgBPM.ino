@@ -32,7 +32,7 @@ const long ledInterval = 50;        // interval at which to blink LED (milliseco
 // if you do not receive a heartbeat value in over 5 seconds, flush the BPM array and start fresh
 const long flushInterval = 2000;    //interval at which to refresh values stored in array
 
-boolean doOnce = true;   // makes sure that if a heartbeat is found that information is gathered only once during cycle
+boolean heartDoOnce = true;   // makes sure that if a heartbeat is found that information is gathered only once during cycle
 
 // variables for averaging BPM over several heartbeats
 int bpmCounter = 0;      // counter for counting bpmArray position     
@@ -57,17 +57,17 @@ void loop() {
   unsigned long currentMillis = millis();   
   
   if (heart.beatDetected()){  
-    if (doOnce == true){
+    if (heartDoOnce == true){
     litMillis = currentMillis;
     digitalWrite(LED, HIGH);                // turn on an LED for visual feedback that heartbeat occurred
     
     bpmArray[bpmCounter] = heart.getBPM();  // grab a BPM snapshot every time a heartbeat occurs
     bpmCounter++;                           // increment the BPMcounter value
-    doOnce = false;
+    heartDoOnce = false;
     }
   }
   else {
-    doOnce = true;
+    heartDoOnce = true;
   }
 
   if (bpmCounter == (arraySize)) {                    // if you have grabbed enough heartbeats to average                                      

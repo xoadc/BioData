@@ -83,8 +83,8 @@ int SkinConductance::getRaw() const {
 
 void SkinConductance::sample() {
     // Read sensor value and invert it.
-    gsrSensorReading = 1023 - analogRead(_pin); //this is a dummy read to clear the adc.  This is needed at higher sampling frequencies.
-    gsrSensorReading = 1023 - analogRead(_pin);
+    gsrSensorReading = analogRead(_pin); //this is a dummy read to clear the adc.  This is needed at higher sampling frequencies.
+    gsrSensorReading = analogRead(_pin);
     // Smooth out the signals that you compare to one another and map between 0 and 1000
 
     gsrSensorLop = alpha_1*gsrSensorReading + (1 - alpha_1)*gsrSensorLop;
@@ -92,7 +92,7 @@ void SkinConductance::sample() {
 
     gsrSensorChange = ((gsrSensorLop - gsrSensorLopassed)/10)+0.2;
 
-    gsrSensorLopFiltered = map(gsrSensorLop, 0, 1023, 0, 1000)*0.001;
+    gsrSensorLopFiltered = map(gsrSensorLop, 0, 4095, 0, 1000)*0.001;
 
     gsrSensorChange = constrain(gsrSensorChange, 0, 1);
 

@@ -50,9 +50,9 @@ Refer to the [schematic](schematics/JJM_BioSynth_3-1_schem.pdf) and [bill of mat
 
 # Credits
 
-Original Developer: [Erin Gee](http://www.eringee.net)
-Subsequent Developer: [Amanda Dawn Christie](http://amandadawnchristie.ca)
-Electronics & software nerd: [John Janigan-Mills](http://johnjaniganmills.ca)
+* Original Developer: [Erin Gee](http://www.eringee.net)
+* Subsequent Developer: [Amanda Dawn Christie](http://amandadawnchristie.ca)
+* Electronics & software nerd: [John Janigan-Mills](http://johnjaniganmills.ca)
 
 Contributors:
 * [Martin Peach](https://puredata.info/Members/martinrp/OSCobjects)

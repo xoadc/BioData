@@ -25,7 +25,7 @@ Code verified on [Arduino 2.0.3](https://www.arduino.cc/) on a [ESP32](https://w
 - In the code folder, open up a terminal and run "eeg.py"
   - You will need to install `pip install python-osc`
 
-## Senors Operation
+## Sensors Operation
 
 - Upload BioData.ino to your ESP32
 - In the code folder, open up a terminal and launch "sensors.py"
@@ -44,7 +44,7 @@ Code verified on [Arduino 2.0.3](https://www.arduino.cc/) on a [ESP32](https://w
 
 # Circuit Design
 
-Refer to the [schematic](schematics/JJM_BioSynth_3-1_schem.pdf).
+Refer to the [schematic](schematics/JJM_BioSynth_3-1_schem.pdf) and [bill of materials](schematics/JJM_BioSynth_3-1_bom.html)
 
 
 

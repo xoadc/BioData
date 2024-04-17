@@ -1,4 +1,3 @@
-import serial
 import time 
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer

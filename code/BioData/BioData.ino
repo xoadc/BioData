@@ -13,7 +13,7 @@ boolean heartDoOnce = true;    // for only performing actions once when heartbea
 boolean respDoOnce = true;    // for only performing actions once when breath is detected
 
 void setup() {
-  Serial.begin(9600);  // works best in testing with 9600 or lower
+  Serial.begin(19200);  // works best in testing with 9600 or lower
   
   // Initialize sensor.
   heart.reset();
@@ -33,13 +33,13 @@ void loop() {
   if (currentMillis % printInterval == 0) {  //impose a delay to avoid taxing your serial port
     
     Serial.print("H:");
-    Serial.print(heart.getNormalized());  
+    Serial.print(heart.getRaw());  
 
     Serial.print(" R:");
-    Serial.print(resp.getNormalized()); 
+    Serial.print(resp.getRaw()); 
 
     Serial.print(" S:");
-    Serial.println(skin.getSCL());
+    Serial.println(skin.getRaw());
     
   } 
 

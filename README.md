@@ -1,57 +1,58 @@
 # BioData
 
-An Arduino library for interpreting biological signals, BioData makes it easier to collect data relative to photoplethysmograph (heart sensor), including normalizing the signal, obtaining BPM, and heartbeat. This code is tested on my own respiration and GSR circuitry (image included above) as well as with a [Pulse Sensor](https://pulsesensor.com/) connected to 3.3V power source. Be aware that your results may vary with a 5V signal.
+A multi-media project inspired by Erin Gee et al. It uses an Arduino library for interpreting biological signals such as photoplethysmograph (heart sensor), galvanic skin response (GSR), respiration, and brain waves (OpenBCI EEG).
 
-## Installation
+## Arduino Installation
 
 Copy the BioData folder to your Arduino or Wiring libraries folder or download it with the Arduino library manager.
 
-Code verified on [Arduino 2.0.3](https://www.arduino.cc/) on a [Teensy 3.2](https://www.pjrc.com/teensy/) microcontroller.
+Code verified on [Arduino 2.0.3](https://www.arduino.cc/) on a [ESP32](https://www.espressif.com/en/products/socs/esp32) microcontroller.
 
-## Basic Example Using Heart
+## OpenBCI Installation and Operation
 
-To gather heart beat data I use the [Pulse Sensor](https://pulsesensor.com/) connected to a 3.3V power source. Be aware that your results may vary when using this library with a 5V signal.
+- Set all dipswitches to the down (negative) position
+- Plug one ear clip into D_G, the other into REF
+- Plug the frontal lobe electrodes into +1 and +2, back lobe electrodes into +3 and +4
+- Plug in USB dongle, turn on Ganglion board
+- Start OpenBCI_GUI
+  - select Ganglion as the DATA SOURCE
+  - select BLED112 Dongle as the transfer protocol
+  - select the Ganglion-e16e from the list and START SESSION.
+- There should be four panels present - on one of the panels, select "Networking" from the drop-down panel.
+  - On top right of this panel, select OSC as the Protocol.
+  - Under Stream 1, select BANDPOWER as the DataType, IP should be 127.0.0.1, PORT should be 12345
+- Finally, under the NETWORKING window, click "Start OSC Stream"
+- In the code folder, open up a terminal and run "eeg.py"
+  - You will need to install `pip install python-osc`
 
-```c++
-#include <Heart.h>
+## Senors Operation
 
-// Create instance for sensor on analog input pin.
-Heart heart(A8);
+- Upload BioData.ino to your ESP32
+- In the code folder, open up a terminal and launch "sensors.py"
+  - You will need python-osc, PySerialTransfer, and PySerial to run it 
+    - Install using `pip install pySerialTransfer`, `pip install pyserial`, and `pip install python-osc`
 
-void setup() {
-  Serial.begin(9600);
+## PureData Operation
 
-  // Initialize sensor.
-  heart.reset();
-}
+- You need a minimum of PureData 0.54-1
+- To run our patches you will need the external "Gem" and "else" libraries.
+  - To install them, in PureData go to the "Help" menu, and then "Find externals" 
+  - Search and install "Gem" and "else".
+- In the "pd" folder you will find "biofbk-2.pd", open it up.
+- You should now be seeing a weird sphere with a brain on it undulated with your biology!
 
-void loop() {
-  // Update sensor.
-  heart.update();
-
-  // Print-out different informations.
-  Serial.print(heart.beatDetected());
-  Serial.print(" ");
-  Serial.print(heart.getBPM());
-  Serial.print(" ");
-  Serial.print(heart.getNormalized());
-  Serial.print(" ");
-  Serial.print(heart.getRaw());
-  Serial.println();
-}
-```
 
 # Circuit Design
 
-Refer to the [assembly listing](ASSEMBLY-biodatatrio3.0.pdf) for the parts.
+Refer to the [schematic](schematics/JJM_BioSynth_3-1_schem.pdf).
 
-Schematics:
-![BioSynth Schematics](extra/GEE-BioSynthv3-schematics2018.jpg)
 
 
 # Credits
 
-Main Developer: [Erin Gee](http://www.eringee.net)
+Original Developer: [Erin Gee](http://www.eringee.net)
+Subsequent Developer: [Amanda Dawn Christie](http://amandadawnchristie.ca)
+Electronics & software nerd: [John Janigan-Mills](http://johnjaniganmills.ca)
 
 Contributors:
 * [Martin Peach](https://puredata.info/Members/martinrp/OSCobjects)

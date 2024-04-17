@@ -2,12 +2,7 @@ import serial
 import serial.tools
 import serial.tools.list_ports
 import re
-
-from pySerialTransfer import pySerialTransfer as txfer
-
 import time 
-from pythonosc.dispatcher import Dispatcher
-from pythonosc.osc_server import BlockingOSCUDPServer
 from pythonosc.udp_client import SimpleUDPClient
 
 OSC_IP = "127.0.0.1"
@@ -55,8 +50,7 @@ respiration_address = "/respiration"
 time_of_last_check = time.monotonic() * 1000.0
 check_interval_ms = 5.0
 serial_port = '/dev/tty.usbserial-0001'
-buad_rate = 9600
-
+buad_rate = 19200
 
 
 ''' Detect serial values from Arduino '''
@@ -66,9 +60,6 @@ while True:
 
     try:
 
-        if ser.in_waiting <= 0:
-            continue
-
         current_time_ms = time.monotonic() * 1000.0
 
         #print (current_time_ms)
@@ -77,22 +68,21 @@ while True:
 
             time_of_last_check = current_time_ms
 
-            line = ser.readline().decode('utf-8').split(" ")
+            line = ser.readline().decode('utf-8')
+            print (line)
+            #heartBpm        = cleanString (line[0])
+            #respiration     = cleanString (line[1])
+            #skinConductance = cleanString (line[2])
 
-            heartBpm        = cleanString (line[0])
-            respiration     = cleanString (line[1])
-            skinConductance = cleanString (line[2])
+            #print (line[0], line[1], line[2])
 
+            # try: 
+            #     OSC_CLIENT.send_message (heart_address, heartBpm)
+            #     OSC_CLIENT.send_message (skin_address, skinConductance)
+            #     OSC_CLIENT.send_message (respiration_address, respiration)
             
-            print (heartBpm, respiration, skinConductance)
-
-            try: 
-                OSC_CLIENT.send_message (heart_address, heartBpm)
-                OSC_CLIENT.send_message (skin_address, skinConductance)
-                OSC_CLIENT.send_message (respiration_address, respiration)
-            
-            except ValueError:
-                continue
+            # except ValueError:
+            #     continue
 
     except serial.SerialException:
         continue

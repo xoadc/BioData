@@ -21,11 +21,6 @@ the Free Software Foundation.
 // Create instance for sensor on analog input pin.
 Respiration resp(A3);
 
-char* ip = "127.0.0.1";
-int port = 5000;
-
-EthernetClient ethClient;
-OSCMessage msg ("/respiration");
 
 // Optional variables for lighting onboard LED on heartbeat
 int counter;  // counter for timing routine without using delay
@@ -36,7 +31,7 @@ const long ledInterval = 50;        // interval at which to blink LED (milliseco
 //variable for attenuating data flow to serial port prevents crashes
 const long printInterval = 20;       // millis
 
-boolean doOnce = true;    // for only performing actions once when breath is detected
+boolean respDoOnce = true;    // for only performing actions once when breath is detected
 
 void setup() {
   Serial.begin(9600);  // works best in testing with 9600 or lower
@@ -84,14 +79,14 @@ void loop() {
   
   if (resp.breathDetected()){  
     digitalWrite(LED, HIGH);
-    if (doOnce == true){          // only perform these actions once when a breath is detected
+    if (respDoOnce == true){          // only perform these actions once when a breath is detected
       litMillis = currentMillis;
       digitalWrite(LED, HIGH);    // turn on an LED for visual feedback that breath occurred
-      doOnce = false;             
+      respDoOnce = false;             
     }
   } 
   else {
-    doOnce = true;                // reset
+    respDoOnce = true;                // reset
   }
 
   // check to see if it's time to turn off the LED

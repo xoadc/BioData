@@ -26,7 +26,7 @@ const long ledInterval = 50;        // interval at which to blink LED (milliseco
 //variable for attenuating data flow to serial port prevents crashes
 const long printInterval = 20;       // millis
 
-boolean doOnce = true;    // for only performing actions once when heartbeat is detected
+boolean heartDoOnce = true;    // for only performing actions once when heartbeat is detected
 
 void setup() {
   Serial.begin(9600);  // works best in testing with 9600 or lower
@@ -68,14 +68,14 @@ void loop() {
   
   if (heart.beatDetected()){  
     digitalWrite(LED, HIGH);
-    if (doOnce == true){          // only perform these actions once when a heartbeat is detected
+    if (heartDoOnce == true){          // only perform these actions once when a heartbeat is detected
       litMillis = currentMillis;
       digitalWrite(LED, HIGH);    // turn on an LED for visual feedback that heartbeat occurred
-      doOnce = false;             
+      heartDoOnce = false;             
     }
   } 
   else {
-    doOnce = true;                // reset
+    heartDoOnce = true;                // reset
   }
 
   // check to see if it's time to turn off the LED

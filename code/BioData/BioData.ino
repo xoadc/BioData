@@ -33,13 +33,13 @@ void loop() {
   if (currentMillis % printInterval == 0) {  //impose a delay to avoid taxing your serial port
     
     Serial.print("H:");
-    Serial.print(heart.getBPM());  
+    Serial.print(heart.getNormalized());  
 
     Serial.print(" R:");
-    Serial.print(resp.getRaw()); 
+    Serial.print(resp.getNormalized()); 
 
     Serial.print(" S:");
-    Serial.println(skin.getRaw());
+    Serial.println(skin.getSCL());
     
   } 
 

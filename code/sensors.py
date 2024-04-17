@@ -60,9 +60,6 @@ buad_rate = 9600
 
 
 ''' Detect serial values from Arduino '''
-print ('hi')
-# list all serial ports
-print (serial.tools.list_ports.comports())
 ser = serial.Serial (serial_port, buad_rate)
 
 while True:
@@ -82,9 +79,9 @@ while True:
 
             line = ser.readline().decode('utf-8').split(" ")
 
-            heartBpm = translate (cleanString (line[0]), 40.0, 150.0, 0.5, 4.0)
-            respiration = translate (cleanString (line[1]), 300.0, 700.0, 0.0, 1.0)
-            skinConductance = translate (cleanString (line[2]), 0.0, 3000.0, 0.0, 1.0)
+            heartBpm        = cleanString (line[0])
+            respiration     = cleanString (line[1])
+            skinConductance = cleanString (line[2])
 
             
             print (heartBpm, respiration, skinConductance)

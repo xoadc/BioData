@@ -55,6 +55,7 @@ Refer to the [schematic](schematics/JJM_BioSynth_3-1_schem.pdf) and [bill of mat
 * Electronics & software nerd: [John Janigan-Mills](http://johnjaniganmills.ca)
 
 Contributors:
+* [Theverant](https://github.com/theverant)
 * [Martin Peach](https://puredata.info/Members/martinrp/OSCobjects)
 * [Thomas Ouellet Fredericks](https://github.com/thomasfredericks)
 * [Sofian Audry](https://github.com/sofian)

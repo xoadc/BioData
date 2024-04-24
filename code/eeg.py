@@ -45,3 +45,73 @@ OSC_DISPATCHER.map ("/openbci/*", openbci_band_handler)
 OSC_SERVER = BlockingOSCUDPServer ((OSC_IP, BCI_BAND_PORT), OSC_DISPATCHER)
 OSC_SERVER.serve_forever()
 
+
+
+# from math import sqrt
+# import numpy as np
+
+# class OSCMessageHandler:
+#     def __init__(self):
+#         self.band_power = {}  
+#         self.accelerometer = {}  
+#         self.accelerometer_buffer = {'x': [], 'y': [], 'z': []}
+#         self.buffer_size = 256
+
+#     def handle_osc_message(self, address, *args):
+#         address_parts = address.split('/')    
+#         if address_parts[2] == "band-power":
+#             band_index = int(address_parts[3])           
+#             data_array = list(map(float, args))
+            
+#             # Calculate the Root Mean Square (RMS) value
+#             rms_value = sqrt(sum(value**2 for value in data_array))/len(data_array)
+  
+#             # Subtract RMS of accelerometer axes from bandpower
+#             rms_accelerometer = self.get_accelerometer_rms()            
+#             if rms_accelerometer:
+#                 self.band_power[band_index] = rms_value - rms_accelerometer
+#             else:
+#                 self.band_power[band_index] = rms_value     
+                    
+#         elif address_parts[2] == "accelerometer":  
+#             axis = address_parts[3]        
+#             value = float(args[0])        
+#             self.accelerometer[axis] = value
+#             # Update accelerometer buffer for each axis
+#             self.accelerometer_buffer[axis].append(value)
+#             if len(self.accelerometer_buffer[axis]) > self.buffer_size:
+#                 self.accelerometer_buffer[axis].pop(0)
+
+#         print(f"Updated Values: BandPower: {self.band_power}, Accelerometer: {self.accelerometer}")      
+    
+#     def get_accelerometer_rms(self):
+#         """Calculate the RMS of each accelerometer axis"""
+#         accelerometer_data = {axis: np.array(self.accelerometer_buffer[axis]) for axis in self.accelerometer_buffer.keys()}
+#         rms_values = []
+#         for axis, data in accelerometer_data.items():
+#             if len(data) == self.buffer_size: 
+#                 rms_values.append(sqrt(np.mean(data**2)))
+#             else:
+#                 return None  # Not enough data for rolling average
+#         return sum(rms_values) / len(rms_values) 
+ 
+#     def get_band_power(self, band_index):  
+#         return self.band_power.get(band_index, None)  
+ 
+# from pythonosc.osc_server import BlockingOSCUDPServer  
+# from pythonosc.dispatcher import Dispatcher  
+
+# IP = '127.0.0.1'        
+# PORT = 12345          
+
+# def main():    
+#     handler = OSCMessageHandler()   
+#     dispatcher = Dispatcher()        
+#     dispatcher.map("/openbci/*", handler.handle_osc_message)      
+#     server = BlockingOSCUDPServer((IP, PORT), dispatcher)      
+#     print(f"Listening for OSC messages on IP: {IP}, Port: {PORT}...")     
+#     server.serve_forever()  
+    
+# if __name__ == "__main__":          
+#     main()  
+

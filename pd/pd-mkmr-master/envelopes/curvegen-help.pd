@@ -1,0 +1,254 @@
+#N canvas 471 406 1089 618 10;
+#X obj 333 12 cnv 15 470 140 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X obj 715 12 cnv 15 180 190 empty empty empty 20 12 0 14 -232576 -66577
+0;
+#X obj 479 419 r \$0-snd-val-1;
+#X obj 571 441 t b f;
+#X obj 571 420 r \$0-snd-tme-1;
+#X obj 659 440 t b f;
+#X obj 659 419 r \$0-snd-crv-1;
+#X obj 579 470 pack f f f f f, f 52;
+#X obj 769 440 t b f;
+#X obj 859 440 t b f;
+#X msg 579 512 \$1 \$2 \$3 \, 0 \$4 \$5;
+#X obj 579 533 curvegen;
+#X obj 579 564 tabwrite \$0-env;
+#X obj 769 419 r \$0-snd-tme-2;
+#X obj 859 419 r \$0-snd-crv-2;
+#X obj 703 505 f \$0;
+#X msg 703 526 \; \$1-env const 0;
+#X text 479 399 //VALUE;
+#X text 571 400 //TIME-1;
+#X text 659 399 //CURVE-1;
+#X text 769 399 //TIME-2;
+#X text 859 399 //CURVE-2;
+#X text 735 495 //Set table to a constant of 0 to clear the previous
+envelope;
+#X text 679 564 //Draw the curve in a table or array;
+#X text 732 32 1) Destination Value;
+#X text 722 12 inlet 0: list;
+#X text 732 47 2) Time (ms);
+#X text 732 62 3) Curve Factor (bipolar);
+#X text 722 82 inlet 2: bang;
+#X obj 11 11 cnv 15 293 263 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X obj 24 91 hsl 128 15 0 250 0 1 \$0-snd-tme-1 empty TIME-1 -2 -8
+0 10 -262144 -1 -1 9042 1;
+#X obj 24 126 hsl 128 15 -6 6 0 1 \$0-snd-crv-1 empty CURVE-1 -2 -8
+0 10 -262144 -1 -1 5200 1;
+#X obj 164 91 hsl 128 15 0 250 0 1 \$0-snd-tme-2 empty TIME-2 -2 -8
+0 10 -262144 -1 -1 12700 1;
+#X obj 164 126 hsl 128 15 -6 6 0 1 \$0-snd-crv-2 empty CURVE-2 -2 -8
+0 10 -262144 -1 -1 11000 1;
+#X obj 24 56 hsl 128 15 0.1 1 1 1 \$0-snd-val-1 empty VALUE -2 -8 0
+10 -262144 -1 -1 9400 1;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-env 500 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X coords 0 1 499 0 273 101 1 0 0;
+#X restore 21 161 graph;
+#X text 20 19 ENVELOPE GENERATOR –––––––;
+#X obj 11 285 cnv 15 293 233 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array \$0-wave 256 float 1;
+#A 0 0 0.0123457 0.0246914 0.037037 0.0493827 0.0617284 0.0740741 0.0864198
+0.0987654 0.111111 0.123457 0.135802 0.148148 0.160494 0.17284 0.185185
+0.197531 0.209877 0.222222 0.234568 0.246914 0.259259 0.271605 0.283951
+0.296296 0.308642 0.320988 0.333333 0.345679 0.358025 0.37037 0.382716
+0.395062 0.407407 0.419753 0.432099 0.444444 0.45679 0.469136 0.481481
+0.493827 0.506173 0.518519 0.530864 0.54321 0.555556 0.567901 0.580247
+0.592593 0.604938 0.617284 0.62963 0.641975 0.654321 0.666667 0.679012
+0.691358 0.703704 0.716049 0.728395 0.740741 0.753086 0.765432 0.777778
+0.790123 0.802469 0.814815 0.82716 0.839506 0.851852 0.864198 0.876543
+0.888889 0.901235 0.91358 0.925926 0.938272 0.950617 0.962963 0.975309
+0.987654 1 1 0.977273 0.954545 0.931818 0.909091 0.886364 0.863636
+0.840909 0.818182 0.795455 0.772727 0.75 0.727273 0.704545 0.681818
+0.659091 0.636364 0.613636 0.590909 0.568182 0.545455 0.522727 0.5
+0.477273 0.454545 0.431818 0.409091 0.386364 0.363636 0.340909 0.318182
+0.295455 0.272727 0.25 0.227273 0.204545 0.181818 0.159091 0.136364
+0.113636 0.0909091 0.0681818 0.0454546 0.0227273 0 0 -1 -1 0 0 0.0123457
+0.0246914 0.037037 0.0493827 0.0617284 0.0740741 0.0864198 0.0987654
+0.111111 0.123457 0.135802 0.148148 0.160494 0.17284 0.185185 0.197531
+0.209877 0.222222 0.234568 0.246914 0.259259 0.271605 0.283951 0.296296
+0.308642 0.320988 0.333333 0.345679 0.358025 0.37037 0.382716 0.395062
+0.407407 0.419753 0.432099 0.444444 0.45679 0.469136 0.481481 0.493827
+0.506173 0.518519 0.530864 0.54321 0.555556 0.567901 0.580247 0.592593
+0.604938 0.617284 0.62963 0.641975 0.654321 0.666667 0.679012 0.691358
+0.703704 0.716049 0.728395 0.740741 0.753086 0.765432 0.777778 0.790123
+0.802469 0.814815 0.82716 0.839506 0.851852 0.864198 0.876543 0.888889
+0.901235 0.91358 0.925926 0.938272 0.950617 0.962963 0.975309 0.987654
+1 1 0.977273 0.954545 0.931818 0.909091 0.886364 0.863636 0.840909
+0.818182 0.795455 0.772727 0.75 0.727273 0.704545 0.681818 0.659091
+0.636364 0.613636 0.590909 0.568182 0.545455 0.522727 0.5 0.477273
+0.454545 0.431818 0.409091 0.386364 0.363636 0.340909 0.318182 0.295455
+0.272727 0.25 0.227273 0.204545 0.181818 0.159091 0.136364 0.113636
+0.0909091 0.0681818 0;
+#X coords 0 1 255 -1 273 101 1 0 0;
+#X restore 21 405 graph;
+#X obj 24 329 hsl 128 15 0 1 0 1 \$0-snd-pos-1 empty POSITION-1 -2
+-8 0 10 -262144 -1 -1 8200 1;
+#X obj 164 329 hsl 128 15 0 1 0 1 \$0-snd-pos-2 empty POSITION-2 -2
+-8 0 10 -262144 -1 -1 3900 1;
+#X obj 24 364 hsl 128 15 -6 6 0 1 \$0-snd-shp-1 empty CURVE-1 -2 -8
+0 10 -262144 -1 -1 9900 1;
+#X obj 164 364 hsl 128 15 -6 6 0 1 \$0-snd-shp-2 empty CURVE-2 -2 -8
+0 10 -262144 -1 -1 12700 1;
+#N canvas 1043 77 499 359 draw-wave 0;
+#X obj 146 306 curvegen;
+#X obj 146 264 t a b;
+#X obj 146 327 tabwrite \$0-wave;
+#X obj 12 93 t f f;
+#X msg 76 107 1 \$1;
+#X obj 76 128 -;
+#X obj 173 73 t f f;
+#X msg 233 87 1 \$1;
+#X obj 233 108 -;
+#X obj 146 52 t b f;
+#X obj 146 243 pack f f f f f f f f;
+#X msg 146 285 1 \$1 \$5 \, 0 \$2 \$6 \, -1 \$3 \$7 \, 0 \$4 \$8;
+#X obj 303 119 t b f f;
+#X obj 342 140 * -1;
+#X obj 383 159 t b f f;
+#X obj 402 180 * -1;
+#X obj 12 72 r \$0-snd-pos-1;
+#X obj 146 31 r \$0-snd-pos-2;
+#X obj 303 98 r \$0-snd-shp-1;
+#X obj 383 138 r \$0-snd-shp-2;
+#X text 12 52 //POSITION-1;
+#X text 146 11 //POSITION-2;
+#X text 303 78 //CURVE-1;
+#X text 383 118 //CURVE-2;
+#X obj 12 149 * 128;
+#X obj 77 149 * 128;
+#X obj 173 129 * 128;
+#X obj 233 129 * 128;
+#X connect 0 0 2 0;
+#X connect 0 1 2 1;
+#X connect 1 0 11 0;
+#X connect 3 0 24 0;
+#X connect 3 1 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 25 0;
+#X connect 6 0 26 0;
+#X connect 6 1 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 27 0;
+#X connect 9 0 10 0;
+#X connect 9 1 6 0;
+#X connect 10 0 1 0;
+#X connect 11 0 0 0;
+#X connect 12 0 10 0;
+#X connect 12 1 10 4;
+#X connect 12 2 13 0;
+#X connect 13 0 10 5;
+#X connect 14 0 10 0;
+#X connect 14 1 15 0;
+#X connect 14 2 10 7;
+#X connect 15 0 10 6;
+#X connect 16 0 3 0;
+#X connect 17 0 9 0;
+#X connect 18 0 12 0;
+#X connect 19 0 14 0;
+#X connect 24 0 10 0;
+#X connect 25 0 10 1;
+#X connect 26 0 10 2;
+#X connect 27 0 10 3;
+#X restore 218 384 pd draw-wave;
+#X text 20 293 WAVETABLE OSCILLATOR –––––––;
+#X obj 341 390 clip~ -1 1;
+#X obj 341 432 dac~ 1 2;
+#X obj 341 411 *~ 0.5;
+#X obj 341 175 nbx 3 15 40 120 0 1 empty empty MIDI-NOTE 0 -8 0 10
+-262144 -1 -1 55 256;
+#X obj 341 195 mtof;
+#X floatatom 341 216 0 0 0 0 Hz - -;
+#X obj 341 306 phasor~;
+#X obj 341 348 tabread4~ \$0-wave;
+#X obj 341 327 *~ 255;
+#X obj 341 369 *~;
+#X obj 430 240 tabplay~ \$0-env;
+#X obj 455 179 bng 51 250 50 0 empty empty PLAY-ENV 0 -9 0 15 -262144
+-1 -1;
+#X text 572 288 https://github.com/dotmmb/mmb;
+#X text 572 268 Mike Moser-Booth;
+#X text 572 248 Based on the [curve.mmb~] object from the mmb library
+;
+#X text 572 338 https://github.com/MikeMorenoAudio;
+#X text 339 19 [curvegen] - Exponential Ramp Generator;
+#X text 572 318 Abstraction by Mike Moreno;
+#X text 339 79 Negative curve parameters produce convex increases and
+concave decays \, while positive values produce concave increases and
+convex decays.;
+#X text 732 182 1) y value (index);
+#X text 722 162 outlet 1: integer;
+#X text 722 122 outlet 0: float;
+#X text 732 142 1) x value (value);
+#X text 479 378 DRAW ENVELOPE EXAMPLE –––––––––––––––––––
+;
+#X text 339 39 [cruvegen] can generate curved ramps into arrays. These
+arrays can then be used as envelopes \, wavetables \, GUI \, LFOs \,
+etc.;
+#X obj 341 237 sig~;
+#X obj 415 261 *~;
+#X obj 341 285 +~;
+#X obj 455 355 vline~;
+#X msg 455 334 1 1 \, 0 499 1;
+#X text 732 102 1) Reset Counter;
+#X text 339 119 It is important to send a bang to the right inlet before
+sending the list in order to reset the counter;
+#X obj 579 491 t a b;
+#X connect 2 0 7 0;
+#X connect 3 0 7 0;
+#X connect 3 1 7 1;
+#X connect 4 0 3 0;
+#X connect 5 0 7 0;
+#X connect 5 1 7 2;
+#X connect 6 0 5 0;
+#X connect 7 0 77 0;
+#X connect 8 0 7 0;
+#X connect 8 1 7 3;
+#X connect 9 0 7 0;
+#X connect 9 1 7 4;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 1 12 1;
+#X connect 13 0 8 0;
+#X connect 14 0 9 0;
+#X connect 15 0 16 0;
+#X connect 45 0 47 0;
+#X connect 47 0 46 0;
+#X connect 47 0 46 1;
+#X connect 48 0 49 0;
+#X connect 49 0 50 0;
+#X connect 50 0 70 0;
+#X connect 51 0 53 0;
+#X connect 52 0 54 0;
+#X connect 53 0 52 0;
+#X connect 54 0 45 0;
+#X connect 55 0 71 1;
+#X connect 56 0 55 0;
+#X connect 56 0 74 0;
+#X connect 70 0 71 0;
+#X connect 70 0 72 0;
+#X connect 71 0 72 1;
+#X connect 72 0 51 0;
+#X connect 73 0 54 1;
+#X connect 74 0 73 0;
+#X connect 77 0 10 0;
+#X connect 77 1 15 0;

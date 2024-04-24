@@ -68,21 +68,23 @@ while True:
 
             time_of_last_check = current_time_ms
 
-            line = ser.readline().decode('utf-8')
-            print (line)
-            #heartBpm        = cleanString (line[0])
-            #respiration     = cleanString (line[1])
-            #skinConductance = cleanString (line[2])
+            line = ser.readline().decode('utf-8').strip().split(" ")
+            heart           = cleanString (line[0])
+            respiration     = cleanString (line[1])
+            skinConductance = cleanString (line[2])
 
-            #print (line[0], line[1], line[2])
+            print (heart, respiration, skinConductance)
 
-            # try: 
-            #     OSC_CLIENT.send_message (heart_address, heartBpm)
-            #     OSC_CLIENT.send_message (skin_address, skinConductance)
-            #     OSC_CLIENT.send_message (respiration_address, respiration)
+            try: 
+                OSC_CLIENT.send_message (heart_address, heart)
+                OSC_CLIENT.send_message (skin_address, skinConductance)
+                OSC_CLIENT.send_message (respiration_address, respiration)
             
-            # except ValueError:
-            #     continue
+            except ValueError:
+                continue
+
+    except UnicodeDecodeError:
+        continue
 
     except serial.SerialException:
         continue

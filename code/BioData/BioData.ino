@@ -39,7 +39,7 @@ void loop() {
     Serial.print(resp.getNormalized()); 
 
     Serial.print(" S:");
-    Serial.println(skin.getSCR());
+    Serial.println((1024.0f / (float)skin.getRaw()) - 1.0f);
     
   } 
 

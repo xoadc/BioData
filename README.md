@@ -22,23 +22,19 @@ Code verified on [Arduino 2.0.3](https://www.arduino.cc/) on a [ESP32](https://w
   - On top right of this panel, select OSC as the Protocol.
   - Under Stream 1, select BANDPOWER as the DataType, IP should be 127.0.0.1, PORT should be 12345
 - Finally, under the NETWORKING window, click "Start OSC Stream"
-- In the code folder, open up a terminal and run "eeg.py"
-  - You will need to install `pip install python-osc`
 
 ## Sensors Operation
 
 - Upload BioData.ino to your ESP32
-- In the code folder, open up a terminal and launch "sensors.py"
-  - You will need python-osc, PySerialTransfer, and PySerial to run it 
-    - Install using `pip install pySerialTransfer`, `pip install pyserial`, and `pip install python-osc`
+- In the `code/Biofeedback` folder, open up a terminal and run `pip install -r requirements.txt` and then `sensors.py`
 
 ## PureData Operation
 
 - You need a minimum of PureData 0.54-1
 - To run our patches you will need the external "Gem" and "else" libraries.
   - To install them, in PureData go to the "Help" menu, and then "Find externals" 
-  - Search and install "Gem" and "else".
-- In the "pd" folder you will find "biofbk-2.pd", open it up.
+  - Search and install `Gem` and `ELSE`.
+- In the `pd` folder you will find `biofbk-2.pd`, open it up.
 - You should now be seeing a weird sphere with a brain on it undulated with your biology!
 
 
@@ -52,7 +48,7 @@ Refer to the [schematic](schematics/JJM_BioSynth_3-1_schem.pdf) and [bill of mat
 
 * Original Developer: [Erin Gee](http://www.eringee.net)
 * Subsequent Developer: [Amanda Dawn Christie](http://amandadawnchristie.ca)
-* Electronics & software nerd: [John Janigan-Mills](http://johnjaniganmills.ca)
+* Subsequent electronics & software developer: [John Janigan-Mills](http://johnjaniganmills.ca)
 
 Contributors:
 * [Theverant](https://github.com/theverant)

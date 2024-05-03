@@ -1,9 +1,25 @@
+# pip install -r requirements.txt
+
 import serial
 import serial.tools
 import serial.tools.list_ports
 import re
 import time 
 from pythonosc.udp_client import SimpleUDPClient
+
+# Get a list of available serial ports
+ports = serial.tools.list_ports.comports()
+
+# Print available ports
+print("Available serial ports:")
+for i, port in enumerate(ports, start=1):
+    print(f"{i}. {port.device}")
+
+# Let the user select a port
+selected_port_index = int(input("Enter the number of the port you want to use: ")) - 1
+
+# Get the name of the selected port
+selected_port_name = list(ports)[selected_port_index].device
 
 OSC_IP = "127.0.0.1"
 
@@ -54,7 +70,7 @@ buad_rate = 19200
 
 
 ''' Detect serial values from Arduino '''
-ser = serial.Serial (serial_port, buad_rate)
+ser = serial.Serial (selected_port_name, buad_rate)
 
 while True:
 
@@ -82,6 +98,9 @@ while True:
             
             except ValueError:
                 continue
+
+            except KeyboardInterrupt:
+                break
 
     except UnicodeDecodeError:
         continue

@@ -1,12 +1,31 @@
 # BioData
 
-A multi-media project inspired by Erin Gee et al. It uses an Arduino library for interpreting biological signals such as photoplethysmograph (heart sensor), galvanic skin response (GSR), respiration, and brain waves (OpenBCI EEG).
+An intermedia project using biological sensors to manipulate images in realtime. This project starts with the biosynth device developed by Erin Gee et al., and then expands upon it by adding EEG signals. It uses an Arduino library for interpreting biological signals such as photoplethysmograph (heart sensor), galvanic skin response (GSR), respiration, and brain waves (OpenBCI EEG).
+
+# Initial Installation
+
+Download and install the following programs and libraries.
 
 ## Arduino Installation
 
-Copy the BioData folder to your Arduino or Wiring libraries folder or download it with the Arduino library manager.
+ - Copy the BioData folder to your Arduino or Wiring libraries folder or download it with the Arduino library manager.
+ - Upload BioData.ino to your ESP32
 
 Code verified on [Arduino 2.0.3](https://www.arduino.cc/) on a [ESP32](https://www.espressif.com/en/products/socs/esp32) microcontroller.
+
+## PureData Installation and Libraries
+
+- You need a minimum of PureData 0.54-1
+- To run our patches you will need the external "Gem" and "else" libraries.
+  - To install them, in PureData go to the "Help" menu, and then "Find externals" 
+  - Search and install `Gem` and `ELSE`.
+
+## OpenBCI Installation
+
+- Download and install Open BCI GUI
+
+
+# Operation Procedure
 
 ## OpenBCI Installation and Operation
 
@@ -25,15 +44,16 @@ Code verified on [Arduino 2.0.3](https://www.arduino.cc/) on a [ESP32](https://w
 
 ## Sensors Operation
 
-- Upload BioData.ino to your ESP32
 - In the `code/Biofeedback` folder, open up a terminal and run `pip install -r requirements.txt` and then `sensors.py`
+  - Make sure to open terminal from inside the folder (by default terminal opens in your root directory)
+  - To open terminal inside the desired folder you can do one of the following:
+  - Right-click inside a folder in finder and there should be an option "Open in Terminal"
+  - Use the "cd" command in terminal, which stands for "change directory".  Type "cd" in terminal and drag the folder from finder into the terminal to automatically fill the location.
+
+
 
 ## PureData Operation
 
-- You need a minimum of PureData 0.54-1
-- To run our patches you will need the external "Gem" and "else" libraries.
-  - To install them, in PureData go to the "Help" menu, and then "Find externals" 
-  - Search and install `Gem` and `ELSE`.
 - In the `pd` folder you will find `biofbk-2.pd`, open it up.
 - You should now be seeing a weird sphere with a brain on it undulated with your biology!
 
